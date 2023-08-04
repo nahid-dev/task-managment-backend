@@ -34,6 +34,11 @@ async function run() {
     //   ALL COLLECTION HERE
     const tasksCollection = client.db("task-management").collection("tasks");
 
+    //   ALL TASKS GET API
+    app.get("/allTasks", async (req, res) => {
+      const result = await tasksCollection.find().toArray();
+      res.send(result);
+    });
     // ADD A TASK API
     app.post("/addTask", async (req, res) => {
       const task = req.body;
